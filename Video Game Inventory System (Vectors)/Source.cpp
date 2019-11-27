@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <fstream>
 
 using namespace std;
 
@@ -14,7 +15,27 @@ int main() {
 
 	vector <string> options1 = { "0. Choose Chests", "1. Inspect Inventory", "2. Exit" };
 	vector <string> chestList = { "Chest #0", "Chest #1", "Chest#2" };
-	vector <vector<string>> chests;
+	vector <vector<int>> chests;
+
+
+	fstream randomItems;
+
+	randomItems.open("random items.txt");
+
+	for (int i = 0; i < 5; i++) {
+		vector<int>temp;
+		for (int j = 0; j < 15; j++) {
+			temp.push_back(i);
+		}
+		chests.push_back(temp);
+	}
+
+	for (int i = 0; i < chests.size(); i++) {
+		for (int j= 0; j <chests[i].size(); j++){
+			cout << chests[i][j];
+		}
+		cout << endl;
+	}
 
 	int choiceNum;
 
@@ -70,7 +91,7 @@ int main() {
 				cout << chestList[i] << endl;
 			}
 
-			cout << "Please choose a chest:";
+			cout << "Please choose a chest: ";
 			cin >> choiceNum;
 
 			switch (choiceNum) {
